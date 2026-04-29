@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Entomology — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: #30363d;
+    --accent1: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f78166;
+    --accent4: #d2a8ff;
+    --accent5: #ffa657;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --text-subtle: #6e7681;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(88,166,255,0.08) 0%, transparent 70%);
+  }
+  .header-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    border: 1px solid rgba(88,166,255,0.3);
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: var(--accent1);
+  }
+  .header-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+  .header-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .header-dots span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .header-dots span:nth-child(1) { background: var(--accent3); }
+  .header-dots span:nth-child(2) { background: var(--accent5); }
+  .header-dots span:nth-child(3) { background: var(--accent2); }
+  .header-dots span:nth-child(4) { background: var(--accent1); }
+
+  /* ── NAV ── */
+  .toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .toc a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .toc a:hover { color: var(--text); border-color: var(--border); }
+  .toc a.l1 { color: var(--accent3); }
+  .toc a.l2 { color: var(--accent5); }
+  .toc a.l3 { color: var(--accent2); }
+  .toc a.l4 { color: var(--accent4); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 60px 40px; }
+
+  /* ── LECTURE BLOCKS ── */
+  .lecture {
+    margin-bottom: 80px;
+    scroll-margin-top: 80px;
+  }
+  .lecture-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .lecture-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.12;
+    flex-shrink: 0;
+    margin-top: -8px;
+  }
+  .lecture-num.l1 { color: var(--accent3); }
+  .lecture-num.l2 { color: var(--accent5); }
+  .lecture-num.l3 { color: var(--accent2); }
+  .lecture-num.l4 { color: var(--accent4); }
+  .lecture-title-block { flex: 1; }
+  .lecture-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .l1 .lecture-tag { color: var(--accent3); }
+  .l2 .lecture-tag { color: var(--accent5); }
+  .l3 .lecture-tag { color: var(--accent2); }
+  .l4 .lecture-tag { color: var(--accent4); }
+  .lecture-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    margin-top: 28px;
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin-bottom: 14px; color: var(--text); }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .card.accent-red { border-left: 3px solid var(--accent3); }
+  .card.accent-orange { border-left: 3px solid var(--accent5); }
+  .card.accent-green { border-left: 3px solid var(--accent2); }
+  .card.accent-blue { border-left: 3px solid var(--accent1); }
+  .card.accent-purple { border-left: 3px solid var(--accent4); }
+  .card.accent-red .card-title { color: var(--accent3); }
+  .card.accent-orange .card-title { color: var(--accent5); }
+  .card.accent-green .card-title { color: var(--accent2); }
+  .card.accent-blue .card-title { color: var(--accent1); }
+  .card.accent-purple .card-title { color: var(--accent4); }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* ── LIST STYLES ── */
+  ul { padding-left: 0; list-style: none; margin-bottom: 16px; }
+  ul li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+    color: var(--text);
+    border-bottom: 1px solid rgba(48,54,61,0.4);
+  }
+  ul li:last-child { border-bottom: none; }
+  ul li::before {
+    content: '›';
+    position: absolute;
+    left: 4px;
+    color: var(--text-subtle);
+    font-weight: bold;
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--surface2);
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(88,166,255,0.03); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: rgba(88,166,255,0.05);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout.warn { background: rgba(247,129,102,0.05); border-color: rgba(247,129,102,0.25); }
+  .callout.success { background: rgba(63,185,80,0.05); border-color: rgba(63,185,80,0.25); }
+  .callout.purple { background: rgba(210,168,255,0.05); border-color: rgba(210,168,255,0.25); }
+
+  /* ── FORMULA BOX ── */
+  .formula {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    color: var(--accent5);
+    letter-spacing: 2px;
+  }
+  .formula small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* ── STEP FLOW ── */
+  .steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+  .step {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .step-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .step-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .step-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: var(--border);
+    margin: 4px 0;
+  }
+  .step-body { padding-top: 4px; padding-bottom: 24px; flex: 1; }
+  .step-body strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .step-body p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+  /* ── PILL TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+  .tag-red { color: var(--accent3); border-color: rgba(247,129,102,0.35); background: rgba(247,129,102,0.06); }
+  .tag-blue { color: var(--accent1); border-color: rgba(88,166,255,0.35); background: rgba(88,166,255,0.06); }
+  .tag-green { color: var(--accent2); border-color: rgba(63,185,80,0.35); background: rgba(63,185,80,0.06); }
+  .tag-orange { color: var(--accent5); border-color: rgba(255,166,87,0.35); background: rgba(255,166,87,0.06); }
+  .tag-purple { color: var(--accent4); border-color: rgba(210,168,255,0.35); background: rgba(210,168,255,0.06); }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  /* ── HIGHLIGHT INLINE ── */
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    background: rgba(88,166,255,0.08);
+    color: var(--accent1);
+    padding: 2px 7px;
+    border-radius: 3px;
+    border: 1px solid rgba(88,166,255,0.15);
+  }
+  strong { color: var(--text); }
+
+  /* ── ARTHROPOD CLASSES GRID ── */
+  .class-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .class-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .class-card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--accent5);
+    margin-bottom: 6px;
+  }
+  .class-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .class-card p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-subtle);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">Academic Year 2025–2026</div>
+  <h1><em>Medical</em> Entomology</h1>
+  <h1>Complete Study Guide</h1>
+  <p class="header-sub">Lectures 1 – 4 &nbsp;·&nbsp; Theory &nbsp;·&nbsp; 2 hrs/week</p>
+  <div class="header-dots">
+    <span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="toc">
+  <a href="#lec1" class="l1">01 · General Entomology</a>
+  <a href="#lec2" class="l2">02 · Vectorial System</a>
+  <a href="#lec3" class="l3">03 · Skin & Host Interface</a>
+  <a href="#lec4" class="l4">04 · RNAi Antiviral Immunity</a>
+</nav>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  LECTURE 1                                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section class="lecture" id="lec1">
+  <div class="lecture-header">
+    <div class="lecture-num l1">01</div>
+    <div class="lecture-title-block">
+      <span class="lecture-tag l1">Lecture One</span>
+      <div class="lecture-title">General Introduction to Entomology</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Definition & Scope</div>
+    <p><strong>Entomology</strong> is the scientific discipline concerned with the comprehensive study of insects. This encompasses their <strong>morphology</strong> (external structure), <strong>anatomy</strong> (internal structure), <strong>physiology</strong> (functional processes), and <strong>taxonomy</strong> (classification), as well as their ecological relationships with the environment and other organisms.</p>
+
+    <div class="callout">
+      <span class="callout-icon">📌</span>
+      <div><strong>Key point:</strong> Insects belong to the Phylum Arthropoda, which alone accounts for approximately <strong>87% of all described animal species</strong> on Earth. The remaining 13% includes Mollusca (5%), Chordata (2%), and all other phyla.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Taxonomic Classification (Taxonomy)</div>
+    <p>All life is organised into a ranked hierarchy. From broadest to most specific:</p>
+    <div class="grid-2">
+      <div class="card accent-orange">
+        <div class="card-title">Taxonomic Ranks</div>
+        <ul>
+          <li><strong>Domain</strong> — broadest grouping</li>
+          <li><strong>Kingdom</strong> — e.g., Animalia</li>
+          <li><strong>Phylum</strong> — e.g., Arthropoda</li>
+          <li><strong>Class</strong> — e.g., Insecta</li>
+          <li><strong>Order</strong> — e.g., Diptera</li>
+          <li><strong>Family</strong> — e.g., Culicidae</li>
+          <li><strong>Genus</strong> — e.g., <em>Aedes</em></li>
+          <li><strong>Species</strong> — e.g., <em>Aedes aegypti</em></li>
+        </ul>
+      </div>
+      <div class="card accent-orange">
+        <div class="card-title">Six Kingdoms of Life</div>
+        <ul>
+          <li><strong>Animalia</strong> — multicellular, motile</li>
+          <li><strong>Plantae</strong> — autotrophic, multicellular</li>
+          <li><strong>Fungi</strong> — heterotrophic, mostly multicellular</li>
+          <li><strong>Protista</strong> — unicellular or colonial</li>
+          <li><strong>Eubacteria</strong> — prokaryotic, single-celled</li>
+          <li><strong>Archaebacteria</strong> — found in extreme conditions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">What is an Arthropod?</div>
+    <p>Arthropods are invertebrates (no backbone) with a hard external skeleton and jointed limbs. The name derives from Greek: <em>arthro</em> = joint, <em>pod</em> = foot.</p>
+
+    <div class="card accent-orange">
+      <div class="card-title">15 Defining Characteristics of Arthropods</div>
+      <div class="grid-2">
+        <ul>
+          <li><strong>Exoskeleton</strong> — made of chitin; protects, prevents evaporation, supports muscles; insoluble in water</li>
+          <li><strong>Moulting (ecdysis)</strong> — periodic shedding and replacement of the exoskeleton to allow growth</li>
+          <li><strong>Jointed appendages</strong> — limbs that may be modified into mouthparts, antennae, or reproductive organs; either branched (biramous) or unbranched (uniramous)</li>
+          <li><strong>Segmented body</strong> — segments fused into functional units called <em>tagmata</em> (head, thorax, abdomen) by a process called <em>tagmosis</em></li>
+          <li><strong>Bilateral symmetry</strong> — body divisible into two mirror-image halves</li>
+          <li><strong>Open circulatory system</strong> — dorsal heart; blood (haemolymph) flows freely in haemocoel</li>
+          <li><strong>Ectothermic (cold-blooded)</strong> — body temperature regulated by the environment</li>
+          <li><strong>Tracheal respiration</strong> — network of tubes; some use book lungs</li>
+        </ul>
+        <ul>
+          <li><strong>Separate sexes</strong> — internal fertilisation in most species; most are oviparous (egg-laying); some parthenogenetic</li>
+          <li><strong>Pheromone communication</strong> — chemical signals for mating, alarm, food-finding, migration</li>
+          <li><strong>Metamorphosis</strong> — hemimetabolous (egg → nymph → adult) or holometabolous (egg → larva → pupa → adult)</li>
+          <li><strong>Haemocoel</strong> — body cavity divided into dorsal, ventral, and visceral sinuses</li>
+          <li><strong>Dorsal vessel</strong> — carries haemolymph through the dorsal sinus</li>
+          <li><strong>Compound & simple eyes, antennae, ganglia</strong> — acute sensory organs</li>
+          <li><strong>Malpighian tubules or green glands</strong> — excretory organs; complete digestive tract</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Six Classes of Arthropods</div>
+    <div class="class-grid">
+
+      <div class="class-card">
+        <div class="class-card-title">Class 1</div>
+        <h4>Onychophora</h4>
+        <p>Example: <em>Peripatus</em>. Cylindrical, worm-like body; no distinct head; one pair of antennae; one pair of legs per segment ending in claws. Lives in moist soil and bark; feeds on decomposed organic matter. Breathes via tracheae.</p>
+      </div>
+
+      <div class="class-card">
+        <div class="class-card-title">Class 2</div>
+        <h4>Chilopoda — Centipedes</h4>
+        <p>Head + trunk of similar segments; one pair of legs per segment; first pair modified into <strong>venomous claws</strong> (used to subdue prey). Biting mandibles; single pair of antennae; live in moist habitats (no waterproof cuticle). Fast-moving carnivores; can bite humans, causing pain. Secretes chemical defenses.</p>
+      </div>
+
+      <div class="class-card">
+        <div class="class-card-title">Class 3</div>
+        <h4>Diplopoda — Millipedes</h4>
+        <p>Head + trunk; ≥30 pairs of legs; most trunk segments carry <strong>two pairs of legs</strong> (segments 2–4 carry one pair only). One pair of antennae; respiration by trachea; excretion by Malpighian tubules. Feeds on living and dead plant matter; occasionally predacious.</p>
+      </div>
+
+      <div class="class-card">
+        <div class="class-card-title">Class 4</div>
+        <h4>Arachnida — Spiders, Scorpions, Ticks, Mites</h4>
+        <p>Two tagmata: <strong>cephalothorax</strong> (head + thorax fused, carries sensory organs, mouthparts, legs, stomach) and <strong>abdomen</strong> (heart, lungs, gut, reproductive organs). Six pairs of appendages: chelicerae (prey-capture), pedipalps (sensory), four pairs of walking legs. Mostly terrestrial in warm/dry habitats; no antennae. Medically important as vectors (ticks) and envenomers.</p>
+      </div>
+
+      <div class="class-card">
+        <div class="class-card-title">Class 5</div>
+        <h4>Crustacea — Crabs, Krill, Woodlice</h4>
+        <p>Three tagmata: head, thorax, abdomen. <strong>Two pairs of antennae</strong>; complicated mouthparts (two pairs of maxillae + one pair of mandibles). Exoskeleton reinforced with <strong>calcium carbonate</strong> (extra rigid). Mostly marine; some freshwater/terrestrial. Abdomen may have swimmerets.</p>
+      </div>
+
+      <div class="class-card">
+        <div class="class-card-title">Class 6</div>
+        <h4>Insecta (Hexapoda)</h4>
+        <p><strong>Largest animal class</strong>; ~1 million described species. Three tagmata; one pair of antennae; complex, species-variable mouthparts; <strong>three pairs of legs</strong>; usually two pairs of wings (legs and wings attached to thorax). Compound eyes + simple eyes (ocelli). Tracheal respiration; Malpighian tubule excretion. Pheromones for communication. Can be hemimetabolous or holometabolous.</p>
+      </div>
+
+    </div>
+
+    <div class="card accent-orange">
+      <div class="card-title">Metamorphosis Types Compared</div>
+      <div class="grid-2">
+        <div>
+          <h3>Hemimetabolous (Incomplete)</h3>
+          <p>Egg → <strong>Nymph</strong> → Adult<br>
+          Nymph resembles adult but is sexually immature and usually wingless.<br>
+          <em>Example: cockroach, grasshopper</em></p>
+        </div>
+        <div>
+          <h3>Holometabolous (Complete)</h3>
+          <p>Egg → <strong>Larva</strong> → <strong>Pupa</strong> → Adult<br>
+          Larva looks and behaves completely differently from the adult (different morphology, diet, habitat).<br>
+          <em>Example: butterfly, mosquito, beetle</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  LECTURE 2                                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section class="lecture" id="lec2">
+  <div class="lecture-header">
+    <div class="lecture-num l2">02</div>
+    <div class="lecture-title-block">
+      <span class="lecture-tag l2">Lecture Two</span>
+      <div class="lecture-title">Understanding the Vectorial System</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Core Triad</div>
+    <p>The <strong>vectorial system</strong> is built on three interacting components that must overlap simultaneously and spatially for disease transmission to occur:</p>
+
+    <div class="grid-3">
+      <div class="card accent-red">
+        <div class="card-title">① Pathogen (The Agent)</div>
+        <p>The microorganism that causes disease:</p>
+        <ul>
+          <li>Bacteria</li>
+          <li>Parasites</li>
+          <li>Viruses</li>
+        </ul>
+      </div>
+      <div class="card accent-orange">
+        <div class="card-title">② Vector (The Carrier)</div>
+        <p>Living organism that carries pathogen from host to host — often without getting sick:</p>
+        <ul>
+          <li>Mosquitoes</li>
+          <li>Ticks</li>
+          <li>Sandflies</li>
+          <li>Biting midges</li>
+          <li>Fleas</li>
+        </ul>
+      </div>
+      <div class="card accent-green">
+        <div class="card-title">③ Vertebrate Host (The Victim)</div>
+        <p>Organism that gets infected by the pathogen:</p>
+        <ul>
+          <li>Humans</li>
+          <li>Animals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">🔺</span>
+      <div>The <strong>orange triangle</strong> in the vectorial system diagram represents the zone of pathogen transmission — infection only occurs when all three elements (pathogen, vector, host) converge in the same time and place, within an environmental context.</div>
+    </div>
+
+    <div class="card accent-orange">
+      <div class="card-title">Environmental Context</div>
+      <p>The outer circle of the system. The environment dictates whether vectors and pathogens can survive:</p>
+      <div class="grid-2">
+        <div>
+          <strong>Forested environments</strong><br>
+          <small>Natural habitats where ticks thrive; wild-animal reservoir hosts</small>
+        </div>
+        <div>
+          <strong>Urban environments</strong><br>
+          <small>Dense human populations; standing water; ideal for mosquitoes and fleas</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Arthropod Vector Classification</div>
+    <p>Vectors belong to Phylum Arthropoda, across two main classes:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Order</th>
+          <th>Family</th>
+          <th>Common Name</th>
+          <th>Disease Transmitted</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2"><strong>Arachnida</strong></td>
+          <td rowspan="2">Ixodida</td>
+          <td>Ixodidae</td>
+          <td>Hard ticks</td>
+          <td>Lyme disease, RMSF</td>
+        </tr>
+        <tr>
+          <td>Argasidae</td>
+          <td>Soft ticks</td>
+          <td>Relapsing fever</td>
+        </tr>
+        <tr>
+          <td rowspan="6"><strong>Insecta</strong></td>
+          <td>Siphonaptera</td>
+          <td>Pulicidae</td>
+          <td>Fleas</td>
+          <td>Plague, typhus</td>
+        </tr>
+        <tr>
+          <td>Phthiraptera</td>
+          <td>Pediculidae</td>
+          <td>Lice</td>
+          <td>Epidemic typhus</td>
+        </tr>
+        <tr>
+          <td>Hemiptera</td>
+          <td>Reduviidae</td>
+          <td>Kissing bugs</td>
+          <td>Chagas disease</td>
+        </tr>
+        <tr>
+          <td rowspan="3">Diptera</td>
+          <td>Simuliidae</td>
+          <td>Black flies</td>
+          <td>Onchocerciasis (river blindness)</td>
+        </tr>
+        <tr>
+          <td>Psychodidae</td>
+          <td>Sandflies</td>
+          <td>Leishmaniasis</td>
+        </tr>
+        <tr>
+          <td>Culicidae</td>
+          <td>Mosquitoes</td>
+          <td>Malaria, dengue, Zika, yellow fever</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Mosquitoes (Family Culicidae)</div>
+    <p>There are <strong>3,539 species</strong> of mosquitoes globally, but only ~15% feed on humans. They are divided into two subfamilies:</p>
+
+    <div class="grid-2">
+      <div class="card accent-blue">
+        <div class="card-title">Anophelinae — 540 species</div>
+        <p><em>Anopheles</em> genus. Found worldwide except polar regions. <strong>Primary vectors of malaria</strong> (<em>Plasmodium</em> spp.). Resting position: body angled, proboscis aligned.</p>
+      </div>
+      <div class="card accent-blue">
+        <div class="card-title">Culicinae — >3,000 species</div>
+        <p><em>Aedes</em> and <em>Culex</em> genera. Found on every continent except Antarctica. <em>Aedes</em> transmits dengue, Zika, chikungunya, yellow fever. <em>Culex</em> transmits West Nile virus, filariasis.</p>
+      </div>
+    </div>
+
+    <div class="card accent-blue">
+      <div class="card-title">Female Mosquito Blood-Feeding Mechanism</div>
+      <p>Only female mosquitoes take blood meals — they need the protein for <strong>egg maturation</strong>. During feeding, the proboscis penetrates the skin and the mosquito injects saliva containing three key anti-haemostatic compounds:</p>
+      <div class="grid-3">
+        <div style="padding: 14px; background: var(--surface2); border-radius: 4px;">
+          <strong style="color: var(--accent1);">Apyrase</strong><br>
+          <small>Inhibits platelet aggregation → keeps blood flowing freely at the bite site</small>
+        </div>
+        <div style="padding: 14px; background: var(--surface2); border-radius: 4px;">
+          <strong style="color: var(--accent1);">Anti-thrombin factors</strong><br>
+          <small>Prevent blood coagulation (clotting) → maintains liquid blood flow</small>
+        </div>
+        <div style="padding: 14px; background: var(--surface2); border-radius: 4px;">
+          <strong style="color: var(--accent1);">Sialokinin</strong><br>
+          <small>Counters vasoconstriction → dilates blood vessels for better access</small>
+        </div>
+      </div>
+      <p style="margin-top:14px; margin-bottom:0;"><strong>Diseases transmitted by mosquito bite:</strong> Dengue, Yellow fever, West Nile virus, Zika, Rift Valley fever, Chikungunya</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Virus in the Mosquito — Extrinsic Incubation Period (EIP)</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-line">
+          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <strong>Ingestion</strong>
+          <p>Mosquito feeds on an infected host. The virus (along with the blood meal) enters the midgut lumen.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">2a</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <strong>Midgut Replication</strong>
+          <p>The virus infects midgut epithelial cells, replicates, crosses the basal lamina into the haemocoel (body cavity), and disseminates through haemolymph.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">2b</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <strong>Salivary Gland Invasion (EIP)</strong>
+          <p>The virus invades and replicates in the salivary glands. The time from ingestion to salivary gland infection is the <strong>Extrinsic Incubation Period (EIP)</strong>. Duration is influenced by temperature, humidity, and virus strain.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">3</div>
+        </div>
+        <div class="step-body">
+          <strong>Transmission</strong>
+          <p>The now-infectious mosquito bites a healthy host. Virus is injected via saliva into the skin, initiating a new infection cycle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Factors Affecting Pathogen Transmission</div>
+    <div class="grid-2">
+      <div class="card accent-red">
+        <div class="card-title">Internal Factors</div>
+        <ul>
+          <li>Vector–pathogen co-evolution and genomic interactions</li>
+          <li>Vector immune responses (RNAi, Toll, IMD pathways)</li>
+          <li>Microbiota (bacteria, insect-specific viruses)</li>
+          <li>Co-infections by multiple pathogens</li>
+          <li>Molecular host–vector interactions</li>
+        </ul>
+      </div>
+      <div class="card accent-green">
+        <div class="card-title">External Factors</div>
+        <p><strong>Biotic:</strong></p>
+        <ul>
+          <li>Adult nutrition (nectar sources)</li>
+          <li>Host blood type and quality</li>
+          <li>Larval nutrition and breeding site quality</li>
+        </ul>
+        <p style="margin-top:10px;"><strong>Abiotic:</strong></p>
+        <ul>
+          <li>Temperature — affects EIP and survival</li>
+          <li>Altitude and topography</li>
+          <li>Chemical environment (insecticides)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Vector Capacity Formula</div>
+    <div class="formula">
+      VC = ma²bp<sup>N</sup> / −ln(p)
+      <small>The mathematical model of a mosquito population's disease-spreading efficiency</small>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Variable</th><th>Name</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>VC</code></td><td>Vector Capacity</td><td>Overall efficiency of disease transmission by the vector population</td></tr>
+        <tr><td><code>m</code></td><td>Vector Density</td><td>Number of mosquitoes per human in the area (growth, reproductive output, abiotic stress resistance)</td></tr>
+        <tr><td><code>a</code></td><td>Biting Rate</td><td>Frequency of biting a human per mosquito per day (appears squared because the vector must bite both to acquire and to transmit)</td></tr>
+        <tr><td><code>b</code></td><td>Vector Competence</td><td>Biological probability that the mosquito successfully acquires and transmits the pathogen</td></tr>
+        <tr><td><code>p</code></td><td>Daily Survival Probability</td><td>Probability the mosquito survives each day (influenced by nutrition, microbe interactions, insecticide resistance)</td></tr>
+        <tr><td><code>N</code></td><td>Extrinsic Incubation Period</td><td>Days required for the pathogen to develop to an infectious state inside the mosquito; the vector must survive this entire period</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  LECTURE 3                                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section class="lecture" id="lec3">
+  <div class="lecture-header">
+    <div class="lecture-num l3">03</div>
+    <div class="lecture-title-block">
+      <span class="lecture-tag l3">Lecture Three</span>
+      <div class="lecture-title">Importance of the Skin at the Host–Vector Interface</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Structure of the Skin</div>
+    <p>The skin is the body's <strong>largest organ</strong>, serving simultaneously as a physical barrier, a chemical barrier, and a complex immune organ. It consists of three primary layers:</p>
+
+    <div class="grid-3">
+      <div class="card accent-green">
+        <div class="card-title">Layer 1 — Epidermis</div>
+        <p>Outermost layer. Provides a <strong>waterproof barrier</strong>. Contains keratinocytes (primary immune cells of skin), melanocytes (pigment), Langerhans cells (dendritic cells), and DETC (dendritic epidermal T cells). Topped by the stratum corneum — dead, keratinised cells.</p>
+      </div>
+      <div class="card accent-green">
+        <div class="card-title">Layer 2 — Dermis</div>
+        <p>Middle layer of tough connective tissue. Contains hair follicles, sweat glands, sebaceous glands (oil), sensory nerve endings, fibroblasts, mast cells, macrophages, dendritic cells, T lymphocytes, neutrophils, and an extensive vascular and lymphatic network.</p>
+      </div>
+      <div class="card accent-green">
+        <div class="card-title">Layer 3 — Hypodermis</div>
+        <p>Deepest layer (subcutaneous tissue). Composed of fat cells (adipocytes), collagen, and fibroblasts. Functions: thermal insulation, mechanical cushioning, energy storage, anchoring skin to underlying muscle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Immunity of the Skin</div>
+
+    <h3>1. Innate Immunity — Keratinocytes as First Responders</h3>
+    <p>Keratinocytes are far more than structural cells — they are active immune sentinels:</p>
+
+    <div class="card accent-green">
+      <div class="card-title">Keratinocyte Immune Signalling Pathway</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">1</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Detection via Toll-like Receptors (TLRs)</strong>
+            <p>TLRs on keratinocyte surfaces detect bacterial signals: TLR1/2 — lipoproteins/zymosan; TLR4 — LPS (gram-negative bacteria); TLR5 — flagellin. Endosomal TLR7 detects ssRNA (viruses); TLR3 detects dsRNA; TLR9 detects unmethylated CpG DNA.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">2</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>NLRP3 Inflammasome Activation</strong>
+            <p>Danger signals (UV light, toxins, irritants, LPS) trigger the NLRP3 inflammasome complex within the cytoplasm. NLRP3 + ASC activate <strong>Caspase-1</strong>, which cleaves Pro-IL-1β → mature <strong>IL-1β</strong> (potent pro-inflammatory cytokine).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">3</div>
+          </div>
+          <div class="step-body">
+            <strong>Gene Activation & Effector Production</strong>
+            <p>Signals reach the nucleus → DNA transcription produces: <strong>Antimicrobial peptides</strong> (natural antibiotics: defensins, cathelicidins); <strong>Cytokines</strong> (IL-1β, TNF, IL-6, IL-8) — coordinate systemic immune response; <strong>Chemokines</strong> (CXCL1, CCL2) — recruit neutrophils, monocytes, and macrophages to the infection site.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>2. Adaptive Immunity — Cells of the Dermis</h3>
+    <p>The dermis houses a rich adaptive immune cell population:</p>
+    <div class="grid-2">
+      <ul>
+        <li><strong>Langerhans cells</strong> — epidermal dendritic cells; sample antigens and migrate to lymph nodes</li>
+        <li><strong>Dermal dendritic cells (DC)</strong> — present antigens to naive T cells; produce pro-inflammatory cytokines</li>
+        <li><strong>CD8⁺ T cells</strong> — cytotoxic; kill virus-infected cells directly</li>
+        <li><strong>CD4⁺ T cells</strong> — helper; orchestrate immune response via cytokines</li>
+      </ul>
+      <ul>
+        <li><strong>γδ T cells</strong> — rapid-response T cells active at mucosal/skin barriers</li>
+        <li><strong>Innate lymphoid cells (ILC)</strong> — cytokine producers without antigen specificity</li>
+        <li><strong>Mast cells</strong> — release histamine, tryptase, chymase in response to arthropod saliva</li>
+        <li><strong>Neutrophils & Macrophages</strong> — phagocytose pathogens; produce reactive oxygen species</li>
+      </ul>
+    </div>
+
+    <h3>3. Skin Microbiota — The Microbial Barrier</h3>
+    <div class="card accent-green">
+      <div class="card-title">The Human Microbiome Project (Grice & Segre, 2011)</div>
+      <p>The skin is a <strong>2 m² ecosystem</strong> harbouring over <strong>10¹²</strong> microorganisms. Key residents include:</p>
+      <div class="grid-2">
+        <div>
+          <strong>Bacteria:</strong>
+          <ul>
+            <li><em>Staphylococcus epidermidis</em></li>
+            <li><em>Cutibacterium acnes</em></li>
+            <li><em>Corynebacterium striatum</em></li>
+            <li><em>Streptococcus</em> spp.</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Fungi, Mites, Viruses:</strong>
+          <ul>
+            <li><em>Malassezia</em> (fungus)</li>
+            <li><em>Demodex</em> (mite)</li>
+            <li><em>Staphylococcus</em> phage</li>
+            <li>Human papillomavirus / polyomavirus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout success" style="margin-top:14px; margin-bottom:0;">
+        <span class="callout-icon">🦟</span>
+        <div><strong>Skin microbiota and mosquito attractiveness:</strong> <em>Brevibacterium epidermidis</em> on the feet produces volatile compounds that attract <em>Anopheles gambiae</em> (malaria vector). This mirrors the fact that <em>Limburger cheese</em> (which contains the same bacterium) attracts mosquitoes in laboratory experiments. (Knols & de Jong, 1996)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Skin as the Site of Pathogen Inoculation</div>
+    <p>When an arthropod bites, it injects both <strong>pathogens</strong> and <strong>saliva</strong> into the skin. Saliva contains immunomodulatory compounds that suppress the host immune response, facilitating pathogen establishment.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Disease</th>
+          <th>Pathogen</th>
+          <th>Vector</th>
+          <th>Skin Manifestation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sleeping Sickness</strong></td>
+          <td><em>Trypanosoma brucei</em></td>
+          <td>Tsetse fly (<em>Glossina</em>)</td>
+          <td>Painful trypanosomal chancre (swelling) at bite site</td>
+        </tr>
+        <tr>
+          <td><strong>Lyme Disease</strong></td>
+          <td><em>Borrelia burgdorferi</em></td>
+          <td>Hard tick (<em>Ixodes</em>)</td>
+          <td>Erythema migrans — expanding "bull's-eye" rash</td>
+        </tr>
+        <tr>
+          <td><strong>Mediterranean Spotted Fever</strong></td>
+          <td><em>Rickettsia conorii</em></td>
+          <td>Hard tick</td>
+          <td>Dark eschar (tâche noire) at bite site + generalised rash</td>
+        </tr>
+        <tr>
+          <td><strong>Leishmaniasis</strong></td>
+          <td><em>Leishmania</em> spp.</td>
+          <td>Sandfly (<em>Phlebotomus</em>)</td>
+          <td>Deep, chronic, non-healing skin ulcers</td>
+        </tr>
+        <tr>
+          <td><strong>Onchocerciasis (River Blindness)</strong></td>
+          <td><em>Onchocerca volvulus</em></td>
+          <td>Black fly (<em>Simulium</em>)</td>
+          <td>Severe pruritus, subcutaneous nodules, skin thickening, leopard skin</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card accent-green">
+      <div class="card-title">Lyme Borreliosis — Detailed Progression</div>
+      <p>The skin is the <strong>entry point, multiplication site, and reservoir</strong> of <em>Borrelia</em> bacteria:</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">1</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Tick Attachment (Long Blood Meal)</strong>
+            <p>Tick attaches for hours to days; during feeding, <em>Borrelia</em> migrates from tick midgut → salivary glands → host skin. Causes local injury and potential necrosis at bite site.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">2</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Early Local Stage — Erythema Migrans</strong>
+            <p>Bacteria multiply in skin → expanding bull's-eye rash (erythema migrans); local immune inflammation. Hallmark sign of Lyme disease.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">3</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Early Disseminating Stage — Neuroborreliosis</strong>
+            <p>Bacteria enter bloodstream → spread to nervous system → facial nerve palsy, meningitis, radicular pain (Neuroborreliosis).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">4</div>
+          </div>
+          <div class="step-body">
+            <strong>Late Stage — ACA & Arthritis</strong>
+            <p>Acrodermatitis chronica atrophicans (ACA): chronic skin inflammation and thinning on extremities. Lyme arthritis: bacteria in joints → severe swelling, especially knees.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card accent-green">
+      <div class="card-title">Arboviruses — Role of Mosquito Saliva (Aedes aegypti)</div>
+      <p>Mosquito saliva is not merely a vehicle for pathogens — it is an active <strong>virulence factor</strong>:</p>
+      <ul>
+        <li>Salivary serine proteases increase endothelial permeability → oedema → viral retention in skin</li>
+        <li>Saliva-induced IL-4↑, IL-10↑, IL-12↑ but IFN-γ↓, TNF-α↓, IFN-β↑ → immune suppression favours viral replication</li>
+        <li>Salivary proteins activate myeloid cells (macrophages, Langerhans cells) → these become viral targets and carriers to lymph nodes</li>
+        <li>IgE and IgG sensitisation from repeated mosquito bites alters immune responses in subsequent bites</li>
+        <li>CCL2/4/5/7/12 upregulation → recruits more permissive host cells to bite site</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  LECTURE 4                                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section class="lecture" id="lec4">
+  <div class="lecture-header">
+    <div class="lecture-num l4">04</div>
+    <div class="lecture-title-block">
+      <span class="lecture-tag l4">Lecture Four</span>
+      <div class="lecture-title">RNAi-Mediated Antiviral Immunity in Insects</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Why Are Insects Efficient Vectors?</div>
+    <p>The key to understanding vector efficiency lies in the <strong>nature of viral infection in insects</strong> compared to vertebrates. In vertebrates, viruses typically cause acute, life-threatening disease. In insects, a remarkable balance is established:</p>
+
+    <div class="grid-2">
+      <div class="card accent-red">
+        <div class="card-title">Acute Infection (vertebrate pattern)</div>
+        <p>Viral load spikes rapidly and dramatically, then drops sharply. The host either clears the virus (immune success) or dies. Transmission window is <strong>very short</strong>.</p>
+      </div>
+      <div class="card accent-purple">
+        <div class="card-title">Persistent Infection (insect pattern)</div>
+        <p>Viral load rises slowly to a <strong>stable, controlled low level</strong> and remains there for the insect's entire life. The insect stays healthy and infectious indefinitely. Transmission potential is <strong>lifelong</strong>.</p>
+      </div>
+    </div>
+
+    <div class="callout purple">
+      <span class="callout-icon">⚖️</span>
+      <div><strong>The Balance Model:</strong> Viral persistence results from an equilibrium between <strong>viral replication</strong> (pushing viral load up) and <strong>immune mechanisms</strong> (pushing viral load down). This balance is maintained by two key immune systems: <strong>RNAi</strong> and <strong>viral DNA (vDNA) production</strong>.</div>
+    </div>
+
+    <p>Because the insect does not die from infection, it becomes a <strong>permanent, living reservoir</strong> — flying around and transmitting viruses like dengue, Zika, and chikungunya to humans with every subsequent blood meal.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">RNAi — The Primary Antiviral Mechanism</div>
+    <p>RNA interference (RNAi) is the dominant antiviral defence pathway in insects. It is triggered by the presence of <strong>double-stranded RNA (dsRNA)</strong>, which is a by-product of RNA virus replication (not normally found in healthy cells).</p>
+
+    <div class="card accent-purple">
+      <div class="card-title">The siRNA (Small Interfering RNA) Pathway — Step by Step</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">1</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Viral Replication Produces dsRNA</strong>
+            <p>An RNA virus enters the cell and begins replicating its genome. During this process, a complementary strand is synthesised, producing viral <strong>double-stranded RNA (dsRNA)</strong>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">2</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Dicer-2 Cleavage</strong>
+            <p>The enzyme <strong>Dicer-2</strong> (an RNase III family enzyme) recognises and cleaves the viral dsRNA into short fragments of exactly <strong>21 nucleotides</strong> called <strong>small interfering RNAs (siRNAs)</strong>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">3</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>RISC Assembly (RNA-Induced Silencing Complex)</strong>
+            <p>The siRNA duplex is loaded into the <strong>RISC complex</strong>. The protein <strong>Argonaute-2 (AGO2)</strong> is the catalytic core of RISC. The "passenger" strand of the siRNA is discarded; the "guide" strand remains.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">4</div>
+          </div>
+          <div class="step-body">
+            <strong>Viral RNA Degradation</strong>
+            <p>The guide strand directs RISC to complementary viral RNA sequences. AGO2's "slicer" activity cleaves the viral RNA, degrading it and preventing further protein synthesis. The RISC complex is then recycled.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <div><strong>Critical limitation:</strong> RNAi alone is <strong>not sufficient</strong> to achieve viral persistence. Experimental disruption of RNAi (using mutant mosquitoes lacking Dicer-2) results in lethal viral infections — the insect dies rather than establishing a balanced, persistent infection. A second complementary mechanism is therefore required.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Viral DNA (vDNA) Production During RNA Virus Infection</div>
+    <p>The second key mechanism of antiviral immunity in insects is the conversion of viral RNA into <strong>viral DNA (vDNA)</strong> — a remarkable finding because RNA viruses do not normally produce DNA.</p>
+
+    <div class="card accent-purple">
+      <div class="card-title">How vDNA is Produced — The Retrotransposon Mechanism</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">1</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Retrotransposon Activation</strong>
+            <p><strong>Retrotransposons</strong> are mobile genetic elements in the insect genome that encode their own reverse transcriptase (an enzyme that converts RNA → DNA). Viral RNA infection activates these elements.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">2</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>Reverse Transcription of Viral RNA</strong>
+            <p>Retrotransposon reverse transcriptase converts viral RNA into complementary DNA (cDNA). This cDNA is then incorporated into a circular viral DNA molecule.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">3</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <strong>vDNA as a Persistent Template</strong>
+            <p>The vDNA is stable and persists in the cell. It is transcribed into <strong>vDNA-derived RNA transcripts</strong> (both sense and antisense strands).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">4</div>
+          </div>
+          <div class="step-body">
+            <strong>Continuous siRNA Production</strong>
+            <p>The double-stranded transcripts from vDNA are processed by Dicer-2 into <strong>vDNA-derived siRNAs</strong>. These continuously replenish the RISC pool, sustaining antiviral silencing even when active viral replication subsides — acting as an <strong>immune memory</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout purple">
+      <span class="callout-icon">🧬</span>
+      <div><strong>Combined model:</strong> <code>RNAi + vDNA</code> together balance viral replication to achieve stable, persistent, low-level infection. Neither mechanism alone is sufficient. vDNA provides long-term "memory" that maintains the RNAi response even between blood meals.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Evidence — vDNA Found Across Many Invertebrates</div>
+    <p>The vDNA mechanism has been documented for multiple viruses across different arthropod hosts, confirming it is a conserved evolutionary strategy:</p>
+
+    <div class="grid-3">
+      <div class="card accent-purple" style="padding: 16px;">
+        <div class="card-title">Drosophila (Fruit fly)</div>
+        <ul>
+          <li>Drosophila C virus</li>
+          <li>Flock House virus</li>
+          <li>Sindbis virus</li>
+        </ul>
+      </div>
+      <div class="card accent-purple" style="padding: 16px;">
+        <div class="card-title">Mosquito (<em>Aedes/Culex</em>)</div>
+        <ul>
+          <li>West Nile virus</li>
+          <li>La Crosse virus</li>
+          <li>Chikungunya virus</li>
+          <li>Dengue virus</li>
+        </ul>
+      </div>
+      <div class="card accent-purple" style="padding: 16px;">
+        <div class="card-title">Ticks & Others</div>
+        <ul>
+          <li>Crimean-Congo haemorrhagic fever virus</li>
+          <li>Hazara virus</li>
+          <li>Shrimp parvovirus</li>
+          <li>Bombyx mori CPV (silkworm moth)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Proof of Concept — The AZT Experiment</div>
+    <div class="card accent-purple">
+      <div class="card-title">Targeting Retrotransposons with AZT (Lambrechts & Saleh, 2019; Goic et al., 2016)</div>
+      <p><strong>AZT (Azidothymidine / Zidovudine)</strong> is an antiretroviral drug that <strong>inhibits reverse transcriptase</strong>, blocking retrotransposon activity and thus preventing vDNA production.</p>
+      <p><strong>Experimental design:</strong> Mosquitoes were pre-treated with AZT for 1 day, then given an infectious blood meal containing Chikungunya virus (CHIKV), AZT alone, or CHIKV+AZT.</p>
+      <div class="grid-2">
+        <div>
+          <strong style="color: var(--accent2);">Survival Results:</strong>
+          <ul>
+            <li>AZT only: ~100% survival (drug non-toxic)</li>
+            <li>CHIKV only: ~75% survival (persistent infection)</li>
+            <li><strong>CHIKV + AZT: ~0% survival</strong> — mosquitoes died</li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color: var(--accent4);">Conclusion
