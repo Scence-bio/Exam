@@ -27,7 +27,7 @@
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
   }
 
-  /* ══ DARK MODE (follows system) ══ */
+  /* ══ DARK MODE ══ */
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #0d1117;
@@ -50,7 +50,9 @@
     }
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
@@ -58,13 +60,15 @@
     font-family: 'Source Serif 4', Georgia, serif;
     font-size: 16px;
     line-height: 1.75;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 
   /* ── HEADER ── */
   .header {
     background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 50%, var(--hero-from) 100%);
     border-bottom: 1px solid var(--border);
-    padding: 60px 40px 50px;
+    padding: clamp(32px, 6vw, 60px) clamp(16px, 5vw, 40px) clamp(28px, 5vw, 50px);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -78,23 +82,23 @@
   .header-badge {
     display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(9px, 2vw, 11px);
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent1);
     border: 1px solid color-mix(in srgb, var(--accent1) 35%, transparent);
     padding: 5px 14px;
     border-radius: 2px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 5vw, 56px);
+    font-size: clamp(26px, 6vw, 56px);
     font-weight: 700;
     letter-spacing: -1px;
-    line-height: 1.1;
+    line-height: 1.15;
     color: var(--text);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .header h1 em {
     font-style: italic;
@@ -102,7 +106,7 @@
   }
   .header-sub {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
+    font-size: clamp(10px, 2.5vw, 13px);
     color: var(--text-muted);
     letter-spacing: 1px;
   }
@@ -110,7 +114,7 @@
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 28px;
+    margin-top: 24px;
   }
   .header-dots span {
     width: 6px; height: 6px;
@@ -126,7 +130,7 @@
   .toc {
     background: var(--toc-bg);
     border-bottom: 1px solid var(--border);
-    padding: 20px 40px;
+    padding: 12px clamp(12px, 4vw, 40px);
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
@@ -135,58 +139,64 @@
     top: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   .toc a {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(9px, 2vw, 11px);
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--text-muted);
     text-decoration: none;
-    padding: 6px 14px;
+    padding: 6px clamp(8px, 2vw, 14px);
     border-radius: 2px;
     border: 1px solid transparent;
     transition: all 0.2s;
+    white-space: nowrap;
   }
-  .toc a:hover { color: var(--text); border-color: var(--border); }
+  .toc a:hover, .toc a:focus { color: var(--text); border-color: var(--border); }
   .toc a.l1 { color: var(--accent3); }
   .toc a.l2 { color: var(--accent5); }
   .toc a.l3 { color: var(--accent2); }
   .toc a.l4 { color: var(--accent4); }
 
   /* ── LAYOUT ── */
-  .container { max-width: 960px; margin: 0 auto; padding: 60px 40px; }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 60px) clamp(16px, 5vw, 40px);
+  }
 
   /* ── LECTURE BLOCKS ── */
   .lecture {
-    margin-bottom: 80px;
+    margin-bottom: clamp(48px, 8vw, 80px);
     scroll-margin-top: 80px;
   }
   .lecture-header {
     display: flex;
     align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 40px;
-    padding-bottom: 28px;
+    gap: clamp(12px, 3vw, 24px);
+    margin-bottom: clamp(24px, 5vw, 40px);
+    padding-bottom: clamp(20px, 4vw, 28px);
     border-bottom: 1px solid var(--border);
   }
   .lecture-num {
     font-family: 'Playfair Display', serif;
-    font-size: 72px;
+    font-size: clamp(40px, 10vw, 72px);
     font-weight: 700;
     line-height: 1;
     opacity: 0.12;
     flex-shrink: 0;
-    margin-top: -8px;
+    margin-top: -6px;
   }
   .lecture-num.l1 { color: var(--accent3); }
   .lecture-num.l2 { color: var(--accent5); }
   .lecture-num.l3 { color: var(--accent2); }
   .lecture-num.l4 { color: var(--accent4); }
-  .lecture-title-block { flex: 1; }
+  .lecture-title-block { flex: 1; min-width: 0; }
   .lecture-tag {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: clamp(9px, 2vw, 10px);
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -198,17 +208,17 @@
   .l4 .lecture-tag, .lecture-tag.l4 { color: var(--accent4); }
   .lecture-title {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     font-weight: 700;
     line-height: 1.2;
     color: var(--text);
   }
 
   /* ── SECTION HEADINGS ── */
-  .section { margin-bottom: 40px; }
+  .section { margin-bottom: clamp(28px, 5vw, 40px); }
   .section-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(9px, 2vw, 11px);
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -225,7 +235,7 @@
   }
   h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 20px);
     font-weight: 700;
     color: var(--text);
     margin-bottom: 12px;
@@ -240,13 +250,13 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 24px 28px;
+    padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 28px);
     margin-bottom: 20px;
     box-shadow: var(--shadow);
   }
   .card-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px);
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -264,9 +274,27 @@
   .card.accent-purple .card-title { color: var(--accent4); }
 
   /* ── GRID ── */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-  @media (max-width: 700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* ── RESPONSIVE GRIDS ── */
+  @media (max-width: 700px) {
+    .grid-2,
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 480px) and (max-width: 700px) {
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+  }
 
   /* ── LIST STYLES ── */
   ul { padding-left: 0; list-style: none; margin-bottom: 16px; }
@@ -275,6 +303,7 @@
     position: relative;
     color: var(--text);
     border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+    font-size: clamp(13px, 2.5vw, 15px);
   }
   ul li:last-child { border-bottom: none; }
   ul li::before {
@@ -285,16 +314,25 @@
     font-weight: bold;
   }
 
-  /* ── TABLE ── */
+  /* ── TABLE — scrollable on small screens ── */
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .table-wrap table { margin-bottom: 0; border: none; }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 24px;
-    font-size: 14px;
+    font-size: clamp(12px, 2vw, 14px);
+    min-width: 480px;
   }
   th {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: clamp(9px, 1.8vw, 10px);
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: left;
@@ -302,6 +340,7 @@
     background: var(--surface2);
     color: var(--text-muted);
     border-bottom: 1px solid var(--border);
+    white-space: nowrap;
   }
   td {
     padding: 10px 14px;
@@ -317,13 +356,14 @@
     background: color-mix(in srgb, var(--accent1) 5%, var(--surface2));
     border: 1px solid color-mix(in srgb, var(--accent1) 22%, transparent);
     border-radius: 6px;
-    padding: 18px 22px;
+    padding: clamp(14px, 3vw, 18px) clamp(14px, 3vw, 22px);
     margin-bottom: 20px;
     display: flex;
-    gap: 14px;
+    gap: 12px;
     align-items: flex-start;
   }
   .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout > div { font-size: clamp(13px, 2.5vw, 15px); }
   .callout.warn   { background: color-mix(in srgb, var(--accent3) 5%, var(--surface2)); border-color: color-mix(in srgb, var(--accent3) 25%, transparent); }
   .callout.success{ background: color-mix(in srgb, var(--accent2) 5%, var(--surface2)); border-color: color-mix(in srgb, var(--accent2) 25%, transparent); }
   .callout.purple { background: color-mix(in srgb, var(--accent4) 5%, var(--surface2)); border-color: color-mix(in srgb, var(--accent4) 25%, transparent); }
@@ -333,35 +373,39 @@
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 28px;
+    padding: clamp(18px, 4vw, 28px);
     text-align: center;
     margin-bottom: 20px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 22px;
+    font-size: clamp(14px, 4vw, 22px);
     color: var(--accent5);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     box-shadow: var(--shadow);
+    overflow-x: auto;
+    word-break: break-all;
   }
   .formula small {
     display: block;
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px);
     color: var(--text-muted);
     margin-top: 10px;
     letter-spacing: 1px;
+    word-break: normal;
   }
 
   /* ── STEP FLOW ── */
   .steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
-  .step { display: flex; gap: 18px; align-items: flex-start; }
+  .step { display: flex; gap: clamp(10px, 3vw, 18px); align-items: flex-start; }
   .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
   .step-dot {
-    width: 32px; height: 32px;
+    width: clamp(26px, 5vw, 32px);
+    height: clamp(26px, 5vw, 32px);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px);
     font-weight: 600;
     flex-shrink: 0;
   }
@@ -372,15 +416,15 @@
     background: var(--border);
     margin: 4px 0;
   }
-  .step-body { padding-top: 4px; padding-bottom: 24px; flex: 1; }
-  .step-body strong { display: block; font-size: 15px; margin-bottom: 4px; color: var(--text); }
-  .step-body p { font-size: 14px; color: var(--text-muted); margin: 0; }
+  .step-body { padding-top: 4px; padding-bottom: 20px; flex: 1; min-width: 0; }
+  .step-body strong { display: block; font-size: clamp(13px, 2.5vw, 15px); margin-bottom: 4px; color: var(--text); }
+  .step-body p { font-size: clamp(12px, 2.3vw, 14px); color: var(--text-muted); margin: 0; }
 
   /* ── PILL TAGS ── */
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
   .tag {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(9px, 2vw, 11px);
     padding: 4px 12px;
     border-radius: 999px;
     border: 1px solid;
@@ -392,32 +436,38 @@
   .tag-purple { color: var(--accent4); border-color: color-mix(in srgb, var(--accent4) 35%, transparent); background: color-mix(in srgb, var(--accent4) 6%, transparent); }
 
   /* ── DIVIDER ── */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: clamp(28px, 5vw, 40px) 0; }
 
-  /* ── HIGHLIGHT INLINE ── */
+  /* ── INLINE CODE ── */
   code {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
+    font-size: clamp(11px, 2vw, 13px);
     background: color-mix(in srgb, var(--accent1) 8%, var(--surface2));
     color: var(--accent1);
     padding: 2px 7px;
     border-radius: 3px;
     border: 1px solid color-mix(in srgb, var(--accent1) 15%, transparent);
+    word-break: break-all;
   }
   strong { color: var(--text); }
 
   /* ── ARTHROPOD CLASSES GRID ── */
-  .class-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
   .class-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 20px;
+    padding: clamp(14px, 3vw, 20px);
     box-shadow: var(--shadow);
   }
   .class-card-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px);
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--accent5);
@@ -425,13 +475,13 @@
   }
   .class-card h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: clamp(15px, 3vw, 17px);
     margin-bottom: 10px;
     color: var(--text);
   }
-  .class-card p { font-size: 14px; color: var(--text-muted); margin: 0; }
+  .class-card p { font-size: clamp(12px, 2.3vw, 14px); color: var(--text-muted); margin: 0; }
 
-  /* ── INLINE MINI GRID inside card ── */
+  /* ── MINI GRID ── */
   .mini-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -439,24 +489,47 @@
     margin-top: 14px;
   }
   .mini-grid > div {
-    padding: 14px;
+    padding: clamp(10px, 2vw, 14px);
     background: var(--surface2);
     border-radius: 4px;
     border: 1px solid var(--border);
-    font-size: 14px;
+    font-size: clamp(12px, 2.3vw, 14px);
     color: var(--text);
   }
-  @media (max-width: 700px) { .mini-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .mini-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 480px) and (max-width: 700px) {
+    .mini-grid { grid-template-columns: 1fr 1fr; }
+  }
 
   /* ── FOOTER ── */
   .footer {
     text-align: center;
-    padding: 40px;
+    padding: clamp(24px, 5vw, 40px);
     border-top: 1px solid var(--border);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(9px, 2vw, 11px);
     letter-spacing: 2px;
     color: var(--text-subtle);
+  }
+
+  /* ── MOBILE-SPECIFIC TWEAKS ── */
+  @media (max-width: 480px) {
+    .header h1 { letter-spacing: -0.5px; }
+    .toc { gap: 2px; padding: 10px 12px; }
+    .toc a { font-size: 8px; padding: 5px 8px; }
+    .lecture-header { gap: 10px; }
+    .card { padding: 14px 16px; }
+    .formula { font-size: 13px; letter-spacing: 0; }
+    .callout { gap: 10px; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .toc { display: none; }
+    .container { padding: 20px; }
+    .header { padding: 24px; }
   }
 </style>
 </head>
@@ -477,7 +550,7 @@
 <nav class="toc">
   <a href="#lec1" class="l1">01 · General Entomology</a>
   <a href="#lec2" class="l2">02 · Vectorial System</a>
-  <a href="#lec3" class="l3">03 · Skin & Host Interface</a>
+  <a href="#lec3" class="l3">03 · Skin &amp; Host Interface</a>
   <a href="#lec4" class="l4">04 · RNAi Antiviral Immunity</a>
 </nav>
 
@@ -496,7 +569,7 @@
   </div>
 
   <div class="section">
-    <div class="section-title">Definition & Scope</div>
+    <div class="section-title">Definition &amp; Scope</div>
     <p><strong>Entomology</strong> is the scientific discipline concerned with the comprehensive study of insects. This encompasses their <strong>morphology</strong> (external structure), <strong>anatomy</strong> (internal structure), <strong>physiology</strong> (functional processes), and <strong>taxonomy</strong> (classification), as well as their ecological relationships with the environment and other organisms.</p>
 
     <div class="callout">
@@ -559,7 +632,7 @@
           <li><strong>Metamorphosis</strong> — hemimetabolous (egg → nymph → adult) or holometabolous (egg → larva → pupa → adult)</li>
           <li><strong>Haemocoel</strong> — body cavity divided into dorsal, ventral, and visceral sinuses</li>
           <li><strong>Dorsal vessel</strong> — carries haemolymph through the dorsal sinus</li>
-          <li><strong>Compound & simple eyes, antennae, ganglia</strong> — acute sensory organs</li>
+          <li><strong>Compound &amp; simple eyes, antennae, ganglia</strong> — acute sensory organs</li>
           <li><strong>Malpighian tubules or green glands</strong> — excretory organs; complete digestive tract</li>
         </ul>
       </div>
@@ -702,66 +775,68 @@
     <div class="section-title">Arthropod Vector Classification</div>
     <p>Vectors belong to Phylum Arthropoda, across two main classes:</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Order</th>
-          <th>Family</th>
-          <th>Common Name</th>
-          <th>Disease Transmitted</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td rowspan="2"><strong>Arachnida</strong></td>
-          <td rowspan="2">Ixodida</td>
-          <td>Ixodidae</td>
-          <td>Hard ticks</td>
-          <td>Lyme disease, RMSF</td>
-        </tr>
-        <tr>
-          <td>Argasidae</td>
-          <td>Soft ticks</td>
-          <td>Relapsing fever</td>
-        </tr>
-        <tr>
-          <td rowspan="6"><strong>Insecta</strong></td>
-          <td>Siphonaptera</td>
-          <td>Pulicidae</td>
-          <td>Fleas</td>
-          <td>Plague, typhus</td>
-        </tr>
-        <tr>
-          <td>Phthiraptera</td>
-          <td>Pediculidae</td>
-          <td>Lice</td>
-          <td>Epidemic typhus</td>
-        </tr>
-        <tr>
-          <td>Hemiptera</td>
-          <td>Reduviidae</td>
-          <td>Kissing bugs</td>
-          <td>Chagas disease</td>
-        </tr>
-        <tr>
-          <td rowspan="3">Diptera</td>
-          <td>Simuliidae</td>
-          <td>Black flies</td>
-          <td>Onchocerciasis (river blindness)</td>
-        </tr>
-        <tr>
-          <td>Psychodidae</td>
-          <td>Sandflies</td>
-          <td>Leishmaniasis</td>
-        </tr>
-        <tr>
-          <td>Culicidae</td>
-          <td>Mosquitoes</td>
-          <td>Malaria, dengue, Zika, yellow fever</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Order</th>
+            <th>Family</th>
+            <th>Common Name</th>
+            <th>Disease Transmitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2"><strong>Arachnida</strong></td>
+            <td rowspan="2">Ixodida</td>
+            <td>Ixodidae</td>
+            <td>Hard ticks</td>
+            <td>Lyme disease, RMSF</td>
+          </tr>
+          <tr>
+            <td>Argasidae</td>
+            <td>Soft ticks</td>
+            <td>Relapsing fever</td>
+          </tr>
+          <tr>
+            <td rowspan="6"><strong>Insecta</strong></td>
+            <td>Siphonaptera</td>
+            <td>Pulicidae</td>
+            <td>Fleas</td>
+            <td>Plague, typhus</td>
+          </tr>
+          <tr>
+            <td>Phthiraptera</td>
+            <td>Pediculidae</td>
+            <td>Lice</td>
+            <td>Epidemic typhus</td>
+          </tr>
+          <tr>
+            <td>Hemiptera</td>
+            <td>Reduviidae</td>
+            <td>Kissing bugs</td>
+            <td>Chagas disease</td>
+          </tr>
+          <tr>
+            <td rowspan="3">Diptera</td>
+            <td>Simuliidae</td>
+            <td>Black flies</td>
+            <td>Onchocerciasis (river blindness)</td>
+          </tr>
+          <tr>
+            <td>Psychodidae</td>
+            <td>Sandflies</td>
+            <td>Leishmaniasis</td>
+          </tr>
+          <tr>
+            <td>Culicidae</td>
+            <td>Mosquitoes</td>
+            <td>Malaria, dengue, Zika, yellow fever</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="section">
@@ -774,7 +849,7 @@
         <p><em>Anopheles</em> genus. Found worldwide except polar regions. <strong>Primary vectors of malaria</strong> (<em>Plasmodium</em> spp.). Resting position: body angled, proboscis aligned.</p>
       </div>
       <div class="card accent-blue">
-        <div class="card-title">Culicinae — >3,000 species</div>
+        <div class="card-title">Culicinae — &gt;3,000 species</div>
         <p><em>Aedes</em> and <em>Culex</em> genera. Found on every continent except Antarctica. <em>Aedes</em> transmits dengue, Zika, chikungunya, yellow fever. <em>Culex</em> transmits West Nile virus, filariasis.</p>
       </div>
     </div>
@@ -883,19 +958,21 @@
       VC = ma²bp<sup>N</sup> / −ln(p)
       <small>The mathematical model of a mosquito population's disease-spreading efficiency</small>
     </div>
-    <table>
-      <thead>
-        <tr><th>Variable</th><th>Name</th><th>Description</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><code>VC</code></td><td>Vector Capacity</td><td>Overall efficiency of disease transmission by the vector population</td></tr>
-        <tr><td><code>m</code></td><td>Vector Density</td><td>Number of mosquitoes per human in the area (growth, reproductive output, abiotic stress resistance)</td></tr>
-        <tr><td><code>a</code></td><td>Biting Rate</td><td>Frequency of biting a human per mosquito per day (appears squared because the vector must bite both to acquire and to transmit)</td></tr>
-        <tr><td><code>b</code></td><td>Vector Competence</td><td>Biological probability that the mosquito successfully acquires and transmits the pathogen</td></tr>
-        <tr><td><code>p</code></td><td>Daily Survival Probability</td><td>Probability the mosquito survives each day (influenced by nutrition, microbe interactions, insecticide resistance)</td></tr>
-        <tr><td><code>N</code></td><td>Extrinsic Incubation Period</td><td>Days required for the pathogen to develop to an infectious state inside the mosquito; the vector must survive this entire period</td></tr>
-      </tbody>
-    </table>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Name</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>VC</code></td><td>Vector Capacity</td><td>Overall efficiency of disease transmission by the vector population</td></tr>
+          <tr><td><code>m</code></td><td>Vector Density</td><td>Number of mosquitoes per human in the area (growth, reproductive output, abiotic stress resistance)</td></tr>
+          <tr><td><code>a</code></td><td>Biting Rate</td><td>Frequency of biting a human per mosquito per day (appears squared because the vector must bite both to acquire and to transmit)</td></tr>
+          <tr><td><code>b</code></td><td>Vector Competence</td><td>Biological probability that the mosquito successfully acquires and transmits the pathogen</td></tr>
+          <tr><td><code>p</code></td><td>Daily Survival Probability</td><td>Probability the mosquito survives each day (influenced by nutrition, microbe interactions, insecticide resistance)</td></tr>
+          <tr><td><code>N</code></td><td>Extrinsic Incubation Period</td><td>Days required for the pathogen to develop to an infectious state inside the mosquito; the vector must survive this entire period</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -967,7 +1044,7 @@
             <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">3</div>
           </div>
           <div class="step-body">
-            <strong>Gene Activation & Effector Production</strong>
+            <strong>Gene Activation &amp; Effector Production</strong>
             <p>Signals reach the nucleus → DNA transcription produces: <strong>Antimicrobial peptides</strong> (natural antibiotics: defensins, cathelicidins); <strong>Cytokines</strong> (IL-1β, TNF, IL-6, IL-8) — coordinate systemic immune response; <strong>Chemokines</strong> (CXCL1, CCL2) — recruit neutrophils, monocytes, and macrophages to the infection site.</p>
           </div>
         </div>
@@ -987,13 +1064,13 @@
         <li><strong>γδ T cells</strong> — rapid-response T cells active at mucosal/skin barriers</li>
         <li><strong>Innate lymphoid cells (ILC)</strong> — cytokine producers without antigen specificity</li>
         <li><strong>Mast cells</strong> — release histamine, tryptase, chymase in response to arthropod saliva</li>
-        <li><strong>Neutrophils & Macrophages</strong> — phagocytose pathogens; produce reactive oxygen species</li>
+        <li><strong>Neutrophils &amp; Macrophages</strong> — phagocytose pathogens; produce reactive oxygen species</li>
       </ul>
     </div>
 
     <h3>3. Skin Microbiota — The Microbial Barrier</h3>
     <div class="card accent-green">
-      <div class="card-title">The Human Microbiome Project (Grice & Segre, 2011)</div>
+      <div class="card-title">The Human Microbiome Project (Grice &amp; Segre, 2011)</div>
       <p>The skin is a <strong>2 m² ecosystem</strong> harbouring over <strong>10¹²</strong> microorganisms. Key residents include:</p>
       <div class="grid-2">
         <div>
@@ -1017,7 +1094,7 @@
       </div>
       <div class="callout success" style="margin-top:14px; margin-bottom:0;">
         <span class="callout-icon">🦟</span>
-        <div><strong>Skin microbiota and mosquito attractiveness:</strong> <em>Brevibacterium epidermidis</em> on the feet produces volatile compounds that attract <em>Anopheles gambiae</em> (malaria vector). This mirrors the fact that <em>Limburger cheese</em> (which contains the same bacterium) attracts mosquitoes in laboratory experiments. (Knols & de Jong, 1996)</div>
+        <div><strong>Skin microbiota and mosquito attractiveness:</strong> <em>Brevibacterium epidermidis</em> on the feet produces volatile compounds that attract <em>Anopheles gambiae</em> (malaria vector). This mirrors the fact that <em>Limburger cheese</em> (which contains the same bacterium) attracts mosquitoes in laboratory experiments. (Knols &amp; de Jong, 1996)</div>
       </div>
     </div>
   </div>
@@ -1026,48 +1103,50 @@
     <div class="section-title">Skin as the Site of Pathogen Inoculation</div>
     <p>When an arthropod bites, it injects both <strong>pathogens</strong> and <strong>saliva</strong> into the skin. Saliva contains immunomodulatory compounds that suppress the host immune response, facilitating pathogen establishment.</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Disease</th>
-          <th>Pathogen</th>
-          <th>Vector</th>
-          <th>Skin Manifestation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Sleeping Sickness</strong></td>
-          <td><em>Trypanosoma brucei</em></td>
-          <td>Tsetse fly (<em>Glossina</em>)</td>
-          <td>Painful trypanosomal chancre (swelling) at bite site</td>
-        </tr>
-        <tr>
-          <td><strong>Lyme Disease</strong></td>
-          <td><em>Borrelia burgdorferi</em></td>
-          <td>Hard tick (<em>Ixodes</em>)</td>
-          <td>Erythema migrans — expanding "bull's-eye" rash</td>
-        </tr>
-        <tr>
-          <td><strong>Mediterranean Spotted Fever</strong></td>
-          <td><em>Rickettsia conorii</em></td>
-          <td>Hard tick</td>
-          <td>Dark eschar (tâche noire) at bite site + generalised rash</td>
-        </tr>
-        <tr>
-          <td><strong>Leishmaniasis</strong></td>
-          <td><em>Leishmania</em> spp.</td>
-          <td>Sandfly (<em>Phlebotomus</em>)</td>
-          <td>Deep, chronic, non-healing skin ulcers</td>
-        </tr>
-        <tr>
-          <td><strong>Onchocerciasis (River Blindness)</strong></td>
-          <td><em>Onchocerca volvulus</em></td>
-          <td>Black fly (<em>Simulium</em>)</td>
-          <td>Severe pruritus, subcutaneous nodules, skin thickening, leopard skin</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Disease</th>
+            <th>Pathogen</th>
+            <th>Vector</th>
+            <th>Skin Manifestation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sleeping Sickness</strong></td>
+            <td><em>Trypanosoma brucei</em></td>
+            <td>Tsetse fly (<em>Glossina</em>)</td>
+            <td>Painful trypanosomal chancre (swelling) at bite site</td>
+          </tr>
+          <tr>
+            <td><strong>Lyme Disease</strong></td>
+            <td><em>Borrelia burgdorferi</em></td>
+            <td>Hard tick (<em>Ixodes</em>)</td>
+            <td>Erythema migrans — expanding "bull's-eye" rash</td>
+          </tr>
+          <tr>
+            <td><strong>Mediterranean Spotted Fever</strong></td>
+            <td><em>Rickettsia conorii</em></td>
+            <td>Hard tick</td>
+            <td>Dark eschar (tâche noire) at bite site + generalised rash</td>
+          </tr>
+          <tr>
+            <td><strong>Leishmaniasis</strong></td>
+            <td><em>Leishmania</em> spp.</td>
+            <td>Sandfly (<em>Phlebotomus</em>)</td>
+            <td>Deep, chronic, non-healing skin ulcers</td>
+          </tr>
+          <tr>
+            <td><strong>Onchocerciasis (River Blindness)</strong></td>
+            <td><em>Onchocerca volvulus</em></td>
+            <td>Black fly (<em>Simulium</em>)</td>
+            <td>Severe pruritus, subcutaneous nodules, skin thickening, leopard skin</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="card accent-green">
       <div class="card-title">Lyme Borreliosis — Detailed Progression</div>
@@ -1108,7 +1187,7 @@
             <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">4</div>
           </div>
           <div class="step-body">
-            <strong>Late Stage — ACA & Arthritis</strong>
+            <strong>Late Stage — ACA &amp; Arthritis</strong>
             <p>Acrodermatitis chronica atrophicans (ACA): chronic skin inflammation and thinning on extremities. Lyme arthritis: bacteria in joints → severe swelling, especially knees.</p>
           </div>
         </div>
@@ -1299,7 +1378,7 @@
         </ul>
       </div>
       <div class="card accent-purple" style="padding: 16px;">
-        <div class="card-title">Ticks & Others</div>
+        <div class="card-title">Ticks &amp; Others</div>
         <ul>
           <li>Crimean-Congo haemorrhagic fever virus</li>
           <li>Hazara virus</li>
@@ -1313,7 +1392,7 @@
   <div class="section">
     <div class="section-title">Proof of Concept — The AZT Experiment</div>
     <div class="card accent-purple">
-      <div class="card-title">Targeting Retrotransposons with AZT (Lambrechts & Saleh, 2019; Goic et al., 2016)</div>
+      <div class="card-title">Targeting Retrotransposons with AZT (Lambrechts &amp; Saleh, 2019; Goic et al., 2016)</div>
       <p><strong>AZT (Azidothymidine / Zidovudine)</strong> is an antiretroviral drug that <strong>inhibits reverse transcriptase</strong>, blocking retrotransposon activity and thus preventing vDNA production.</p>
       <p><strong>Experimental design:</strong> Mosquitoes were pre-treated with AZT for 1 day, then given an infectious blood meal containing Chikungunya virus (CHIKV), AZT alone, or CHIKV+AZT.</p>
       <div class="grid-2">
