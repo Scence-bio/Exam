@@ -6,19 +6,48 @@
 <title>Medical Entomology — Complete Study Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+  /* ══ LIGHT MODE ══ */
   :root {
-    --bg: #0d1117;
-    --surface: #161b22;
-    --surface2: #1c2128;
-    --border: #30363d;
-    --accent1: #58a6ff;
-    --accent2: #3fb950;
-    --accent3: #f78166;
-    --accent4: #d2a8ff;
-    --accent5: #ffa657;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --text-subtle: #6e7681;
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #dddcd5;
+    --accent1: #1a6fb5;
+    --accent2: #1a8c3a;
+    --accent3: #c0392b;
+    --accent4: #6b3db5;
+    --accent5: #b85c00;
+    --text: #1c1c1a;
+    --text-muted: #5a5a52;
+    --text-subtle: #8a8a80;
+    --hero-from: #edecea;
+    --hero-to: #e2e1d8;
+    --hero-glow: rgba(26,111,181,0.06);
+    --toc-bg: rgba(255,255,255,0.92);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  /* ══ DARK MODE (follows system) ══ */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2128;
+      --border: #30363d;
+      --accent1: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #f78166;
+      --accent4: #d2a8ff;
+      --accent5: #ffa657;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --text-subtle: #6e7681;
+      --hero-from: #0d1117;
+      --hero-to: #1a1f2e;
+      --hero-glow: rgba(88,166,255,0.08);
+      --toc-bg: rgba(22,27,34,0.95);
+      --shadow: none;
+    }
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +62,7 @@
 
   /* ── HEADER ── */
   .header {
-    background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 50%, #0d1117 100%);
+    background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 50%, var(--hero-from) 100%);
     border-bottom: 1px solid var(--border);
     padding: 60px 40px 50px;
     text-align: center;
@@ -44,7 +73,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(88,166,255,0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, var(--hero-glow) 0%, transparent 70%);
   }
   .header-badge {
     display: inline-block;
@@ -53,7 +82,7 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent1);
-    border: 1px solid rgba(88,166,255,0.3);
+    border: 1px solid color-mix(in srgb, var(--accent1) 35%, transparent);
     padding: 5px 14px;
     border-radius: 2px;
     margin-bottom: 24px;
@@ -95,7 +124,7 @@
 
   /* ── NAV ── */
   .toc {
-    background: var(--surface);
+    background: var(--toc-bg);
     border-bottom: 1px solid var(--border);
     padding: 20px 40px;
     display: flex;
@@ -163,10 +192,10 @@
     margin-bottom: 8px;
     display: block;
   }
-  .l1 .lecture-tag { color: var(--accent3); }
-  .l2 .lecture-tag { color: var(--accent5); }
-  .l3 .lecture-tag { color: var(--accent2); }
-  .l4 .lecture-tag { color: var(--accent4); }
+  .l1 .lecture-tag, .lecture-tag.l1 { color: var(--accent3); }
+  .l2 .lecture-tag, .lecture-tag.l2 { color: var(--accent5); }
+  .l3 .lecture-tag, .lecture-tag.l3 { color: var(--accent2); }
+  .l4 .lecture-tag, .lecture-tag.l4 { color: var(--accent4); }
   .lecture-title {
     font-family: 'Playfair Display', serif;
     font-size: 28px;
@@ -176,9 +205,7 @@
   }
 
   /* ── SECTION HEADINGS ── */
-  .section {
-    margin-bottom: 40px;
-  }
+  .section { margin-bottom: 40px; }
   .section-title {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
@@ -215,6 +242,7 @@
     border-radius: 6px;
     padding: 24px 28px;
     margin-bottom: 20px;
+    box-shadow: var(--shadow);
   }
   .card-title {
     font-family: 'IBM Plex Mono', monospace;
@@ -224,15 +252,15 @@
     text-transform: uppercase;
     margin-bottom: 14px;
   }
-  .card.accent-red { border-left: 3px solid var(--accent3); }
+  .card.accent-red    { border-left: 3px solid var(--accent3); }
   .card.accent-orange { border-left: 3px solid var(--accent5); }
-  .card.accent-green { border-left: 3px solid var(--accent2); }
-  .card.accent-blue { border-left: 3px solid var(--accent1); }
+  .card.accent-green  { border-left: 3px solid var(--accent2); }
+  .card.accent-blue   { border-left: 3px solid var(--accent1); }
   .card.accent-purple { border-left: 3px solid var(--accent4); }
-  .card.accent-red .card-title { color: var(--accent3); }
+  .card.accent-red    .card-title { color: var(--accent3); }
   .card.accent-orange .card-title { color: var(--accent5); }
-  .card.accent-green .card-title { color: var(--accent2); }
-  .card.accent-blue .card-title { color: var(--accent1); }
+  .card.accent-green  .card-title { color: var(--accent2); }
+  .card.accent-blue   .card-title { color: var(--accent1); }
   .card.accent-purple .card-title { color: var(--accent4); }
 
   /* ── GRID ── */
@@ -246,7 +274,7 @@
     padding: 5px 0 5px 20px;
     position: relative;
     color: var(--text);
-    border-bottom: 1px solid rgba(48,54,61,0.4);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
   }
   ul li:last-child { border-bottom: none; }
   ul li::before {
@@ -277,16 +305,17 @@
   }
   td {
     padding: 10px 14px;
-    border-bottom: 1px solid rgba(48,54,61,0.5);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
     vertical-align: top;
+    color: var(--text);
   }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(88,166,255,0.03); }
+  tr:hover td { background: color-mix(in srgb, var(--accent1) 3%, transparent); }
 
   /* ── CALLOUT ── */
   .callout {
-    background: rgba(88,166,255,0.05);
-    border: 1px solid rgba(88,166,255,0.2);
+    background: color-mix(in srgb, var(--accent1) 5%, var(--surface2));
+    border: 1px solid color-mix(in srgb, var(--accent1) 22%, transparent);
     border-radius: 6px;
     padding: 18px 22px;
     margin-bottom: 20px;
@@ -295,9 +324,9 @@
     align-items: flex-start;
   }
   .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .callout.warn { background: rgba(247,129,102,0.05); border-color: rgba(247,129,102,0.25); }
-  .callout.success { background: rgba(63,185,80,0.05); border-color: rgba(63,185,80,0.25); }
-  .callout.purple { background: rgba(210,168,255,0.05); border-color: rgba(210,168,255,0.25); }
+  .callout.warn   { background: color-mix(in srgb, var(--accent3) 5%, var(--surface2)); border-color: color-mix(in srgb, var(--accent3) 25%, transparent); }
+  .callout.success{ background: color-mix(in srgb, var(--accent2) 5%, var(--surface2)); border-color: color-mix(in srgb, var(--accent2) 25%, transparent); }
+  .callout.purple { background: color-mix(in srgb, var(--accent4) 5%, var(--surface2)); border-color: color-mix(in srgb, var(--accent4) 25%, transparent); }
 
   /* ── FORMULA BOX ── */
   .formula {
@@ -311,6 +340,7 @@
     font-size: 22px;
     color: var(--accent5);
     letter-spacing: 2px;
+    box-shadow: var(--shadow);
   }
   .formula small {
     display: block;
@@ -322,17 +352,8 @@
 
   /* ── STEP FLOW ── */
   .steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
-  .step {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-  }
-  .step-line {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-  }
+  .step { display: flex; gap: 18px; align-items: flex-start; }
+  .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
   .step-dot {
     width: 32px; height: 32px;
     border-radius: 50%;
@@ -352,7 +373,7 @@
     margin: 4px 0;
   }
   .step-body { padding-top: 4px; padding-bottom: 24px; flex: 1; }
-  .step-body strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .step-body strong { display: block; font-size: 15px; margin-bottom: 4px; color: var(--text); }
   .step-body p { font-size: 14px; color: var(--text-muted); margin: 0; }
 
   /* ── PILL TAGS ── */
@@ -364,11 +385,11 @@
     border-radius: 999px;
     border: 1px solid;
   }
-  .tag-red { color: var(--accent3); border-color: rgba(247,129,102,0.35); background: rgba(247,129,102,0.06); }
-  .tag-blue { color: var(--accent1); border-color: rgba(88,166,255,0.35); background: rgba(88,166,255,0.06); }
-  .tag-green { color: var(--accent2); border-color: rgba(63,185,80,0.35); background: rgba(63,185,80,0.06); }
-  .tag-orange { color: var(--accent5); border-color: rgba(255,166,87,0.35); background: rgba(255,166,87,0.06); }
-  .tag-purple { color: var(--accent4); border-color: rgba(210,168,255,0.35); background: rgba(210,168,255,0.06); }
+  .tag-red    { color: var(--accent3); border-color: color-mix(in srgb, var(--accent3) 35%, transparent); background: color-mix(in srgb, var(--accent3) 6%, transparent); }
+  .tag-blue   { color: var(--accent1); border-color: color-mix(in srgb, var(--accent1) 35%, transparent); background: color-mix(in srgb, var(--accent1) 6%, transparent); }
+  .tag-green  { color: var(--accent2); border-color: color-mix(in srgb, var(--accent2) 35%, transparent); background: color-mix(in srgb, var(--accent2) 6%, transparent); }
+  .tag-orange { color: var(--accent5); border-color: color-mix(in srgb, var(--accent5) 35%, transparent); background: color-mix(in srgb, var(--accent5) 6%, transparent); }
+  .tag-purple { color: var(--accent4); border-color: color-mix(in srgb, var(--accent4) 35%, transparent); background: color-mix(in srgb, var(--accent4) 6%, transparent); }
 
   /* ── DIVIDER ── */
   .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
@@ -377,11 +398,11 @@
   code {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 13px;
-    background: rgba(88,166,255,0.08);
+    background: color-mix(in srgb, var(--accent1) 8%, var(--surface2));
     color: var(--accent1);
     padding: 2px 7px;
     border-radius: 3px;
-    border: 1px solid rgba(88,166,255,0.15);
+    border: 1px solid color-mix(in srgb, var(--accent1) 15%, transparent);
   }
   strong { color: var(--text); }
 
@@ -392,6 +413,7 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 20px;
+    box-shadow: var(--shadow);
   }
   .class-card-title {
     font-family: 'IBM Plex Mono', monospace;
@@ -408,6 +430,23 @@
     color: var(--text);
   }
   .class-card p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+  /* ── INLINE MINI GRID inside card ── */
+  .mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .mini-grid > div {
+    padding: 14px;
+    background: var(--surface2);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+  }
+  @media (max-width: 700px) { .mini-grid { grid-template-columns: 1fr; } }
 
   /* ── FOOTER ── */
   .footer {
@@ -743,16 +782,16 @@
     <div class="card accent-blue">
       <div class="card-title">Female Mosquito Blood-Feeding Mechanism</div>
       <p>Only female mosquitoes take blood meals — they need the protein for <strong>egg maturation</strong>. During feeding, the proboscis penetrates the skin and the mosquito injects saliva containing three key anti-haemostatic compounds:</p>
-      <div class="grid-3">
-        <div style="padding: 14px; background: var(--surface2); border-radius: 4px;">
+      <div class="mini-grid">
+        <div>
           <strong style="color: var(--accent1);">Apyrase</strong><br>
           <small>Inhibits platelet aggregation → keeps blood flowing freely at the bite site</small>
         </div>
-        <div style="padding: 14px; background: var(--surface2); border-radius: 4px;">
+        <div>
           <strong style="color: var(--accent1);">Anti-thrombin factors</strong><br>
           <small>Prevent blood coagulation (clotting) → maintains liquid blood flow</small>
         </div>
-        <div style="padding: 14px; background: var(--surface2); border-radius: 4px;">
+        <div>
           <strong style="color: var(--accent1);">Sialokinin</strong><br>
           <small>Counters vasoconstriction → dilates blood vessels for better access</small>
         </div>
@@ -767,7 +806,7 @@
     <div class="steps">
       <div class="step">
         <div class="step-line">
-          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">1</div>
+          <div class="step-dot" style="background: color-mix(in srgb, var(--accent5) 15%, transparent); color: var(--accent5); border: 1px solid var(--accent5);">1</div>
           <div class="step-connector"></div>
         </div>
         <div class="step-body">
@@ -777,7 +816,7 @@
       </div>
       <div class="step">
         <div class="step-line">
-          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">2a</div>
+          <div class="step-dot" style="background: color-mix(in srgb, var(--accent5) 15%, transparent); color: var(--accent5); border: 1px solid var(--accent5);">2a</div>
           <div class="step-connector"></div>
         </div>
         <div class="step-body">
@@ -787,7 +826,7 @@
       </div>
       <div class="step">
         <div class="step-line">
-          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">2b</div>
+          <div class="step-dot" style="background: color-mix(in srgb, var(--accent5) 15%, transparent); color: var(--accent5); border: 1px solid var(--accent5);">2b</div>
           <div class="step-connector"></div>
         </div>
         <div class="step-body">
@@ -797,7 +836,7 @@
       </div>
       <div class="step">
         <div class="step-line">
-          <div class="step-dot" style="background: rgba(255,166,87,0.15); color: var(--accent5); border: 1px solid var(--accent5);">3</div>
+          <div class="step-dot" style="background: color-mix(in srgb, var(--accent5) 15%, transparent); color: var(--accent5); border: 1px solid var(--accent5);">3</div>
         </div>
         <div class="step-body">
           <strong>Transmission</strong>
@@ -905,7 +944,7 @@
       <div class="steps">
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">1</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">1</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -915,7 +954,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">2</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">2</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -925,7 +964,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">3</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">3</div>
           </div>
           <div class="step-body">
             <strong>Gene Activation & Effector Production</strong>
@@ -1036,7 +1075,7 @@
       <div class="steps">
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">1</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">1</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1046,7 +1085,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">2</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">2</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1056,7 +1095,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">3</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">3</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1066,7 +1105,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(63,185,80,0.1); color:var(--accent2); border:1px solid var(--accent2);">4</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent2) 10%, transparent); color: var(--accent2); border: 1px solid var(--accent2);">4</div>
           </div>
           <div class="step-body">
             <strong>Late Stage — ACA & Arthritis</strong>
@@ -1136,7 +1175,7 @@
       <div class="steps">
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">1</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">1</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1146,7 +1185,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">2</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">2</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1156,7 +1195,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">3</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">3</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1166,7 +1205,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">4</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">4</div>
           </div>
           <div class="step-body">
             <strong>Viral RNA Degradation</strong>
@@ -1191,7 +1230,7 @@
       <div class="steps">
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">1</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">1</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1201,7 +1240,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">2</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">2</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1211,7 +1250,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">3</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">3</div>
             <div class="step-connector"></div>
           </div>
           <div class="step-body">
@@ -1221,7 +1260,7 @@
         </div>
         <div class="step">
           <div class="step-line">
-            <div class="step-dot" style="background:rgba(210,168,255,0.1); color:var(--accent4); border:1px solid var(--accent4);">4</div>
+            <div class="step-dot" style="background: color-mix(in srgb, var(--accent4) 10%, transparent); color: var(--accent4); border: 1px solid var(--accent4);">4</div>
           </div>
           <div class="step-body">
             <strong>Continuous siRNA Production</strong>
@@ -1287,4 +1326,19 @@
           </ul>
         </div>
         <div>
-          <strong style="color: var(--accent4);">Conclusion
+          <strong style="color: var(--accent4);">Conclusion:</strong>
+          <p style="margin-top: 8px; font-size: 14px;">Without vDNA production, the mosquito cannot tolerate viral infection. Targeting retrotransposons with drugs like AZT <strong>renders mosquitoes intolerant to viruses</strong> — they die upon infection rather than establishing a persistent, transmissible state. This opens a novel avenue for vector control.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+</div><!-- /container -->
+
+<div class="footer">
+  Medical Entomology &nbsp;·&nbsp; Theory 2025–2026 &nbsp;·&nbsp; Lectures 1–4
+</div>
+
+</body>
+</html>
